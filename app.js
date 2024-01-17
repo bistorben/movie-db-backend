@@ -1,6 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import movieRouter from "./routes/movie.js";
+import morgan from "morgan";
+import cors from "cors";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,6 +22,12 @@ mongoose
 mongoose.connection.on("error", () => console.log("Database connection error"));
 
 // middlewares
+
+app.use(express.json());
+app.use(cors());
+app.use(morgan("dev"));
+
+app.use("/movie", movieRouter);
 
 app.listen(PORT, () => {
   console.log("Server is listening");
