@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import movieRouter from "./routes/movie.js";
+import movieRouter from "./routes/movies.js";
 import morgan from "morgan";
 import cors from "cors";
 
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 
-app.use("/movie", movieRouter);
+app.use("/movies", movieRouter);
 
 app.listen(PORT, () => {
   console.log("Server is listening");
